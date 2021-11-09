@@ -1,0 +1,35 @@
+#:kivy 2.0.0
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+
+WindowManager:
+	transition: NoTransition()
+	Features:
+	Info:
+
+<Features>:
+	name: "features"
+
+	Label:
+		text: root.response
+
+	Button:
+	    canvas.before:
+	        Color:
+	            rgba: (255,0,0,1) if self.state == "normal" else (0,255,0,1)
+	        RoundedRectangle:
+	            pos: self.pos
+	            size: self.size
+	            radius: [25]
+
+		text: "Listen"
+		size_hint: None, None
+		height: "100dp"
+		width: "200dp"
+		pos_hint: {'center_x': .5, 'center_y': .2}
+		background_color: 0,0,0,0
+
+		on_release:
+			root.start_listening()
+
+<Info>:
+	name: "info"
