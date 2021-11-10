@@ -13,7 +13,11 @@ __version__ = "14.53"
 window_aspect_ratio(9, 19.5, 0) # Width, Height, Scale
 
 ## == SCREENS == ##
+#(Main Screen In features.py)#
 class Info(Screen):
+	pass
+
+class Settings(Screen):
 	pass
 
 class WindowManager(ScreenManager):
