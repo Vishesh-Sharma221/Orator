@@ -1,39 +1,162 @@
 #:kivy 2.0.0
+#:import hex kivy.utils.get_color_from_hex
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 
+## ==== SCREEN MANAGER ==== ##
 WindowManager:
 	transition: NoTransition()
 	Features:
 	Info:
-	Settings:
+	Setting:
 
+## == VARIABLES == ##
+
+#:set micsize "90dp"
+
+
+## ==== MAIN SCREEN ==== ##
 <Features>:
 	name: "features"
 
-	Label:
-		text: root.response
+	canvas:
+		Color:
+			rgba: hex("#202124")
+		Rectangle:
+			pos: (0, 0)
+			size: (root.width, root.height)
 
-	Button:
-	    canvas.before:
-	        Color:
-	            rgba: (255,0,0,1) if self.state == "normal" else (0,255,0,1)
-	        RoundedRectangle:
-	            pos: self.pos
-	            size: self.size
-	            radius: [25]
+	GridLayout:
+		cols: 1
+		size_hint: 1, 1
 
-		text: "Listen"
-		size_hint: None, None
-		height: "100dp"
-		width: "200dp"
-		pos_hint: {'center_x': .5, 'center_y': .2}
-		background_color: 0,0,0,0
+		###########################################################
+		FloatLayout:
+			size_hint: 1, .1
 
-		on_release:
-			root.start_listening()
+			canvas.before:
+				Color:
+					rgba: 1,0,0,1
+				Line:
+					width: 1
+					rectangle: self.x, self.y, self.width, self.height
 
+			Button:
+				id: btnsettings
+				size_hint: None, None
+				width: "45dp"
+				height: self.width
+				pos_hint: {'x': .05, 'center_y': .45}
+				background_color: 0,0,0,0
+				opacity: .7 if self.state == "down" else 1
+				
+				on_release:
+					root.manager.current = "setting"
+
+				Image:
+					id: imgsettings
+					source: "icons/settings.png"
+					size: self.parent.size
+					center_x: self.parent.center_x
+					center_y: self.parent.center_y
+				
+			Button:
+				id: btninfo
+				size_hint: None, None
+				width: "45dp"
+				height: self.width
+				pos_hint: {'right': .95, 'center_y': .45}
+				background_color: 0,0,0,0
+				opacity: .7 if self.state == "down" else 1
+				
+				on_release:
+					root.manager.current = "info"
+
+				Image:
+					id: imginfo
+					source: "icons/filledhelp.png"
+					size: self.parent.size
+					center_x: self.parent.center_x
+					center_y: self.parent.center_y	
+		
+		###########################################################
+		FloatLayout:
+			size_hint: 1, .55
+
+			canvas.before:
+				Color:
+					rgba: 0,1,0,1
+				Line:
+					width: 1
+					rectangle: self.x, self.y, self.width, self.height
+
+			Label:
+				id: lblhellouser
+				text: "Good Evening, You"
+				font_size: "30dp"
+				color: hex("#00D1FF")
+				text_size: self.size
+				size_hint: .9, .15
+				pos_hint: {'center_x': .5, 'top': .925}
+				halign: "left"
+				valign: "middle"
+				padding_x: "15dp"
+
+				canvas.before:
+					Color:
+						rgba: hex("#00D1FF")
+					Line:
+						width: dp(2.25)
+						rounded_rectangle: (self.x, self.y, self.width, self.height, dp(20))
+		
+		###########################################################
+		FloatLayout:
+			size_hint: 1, .35
+			
+			#------------------------------------------------------
+			canvas.before:
+				Color:
+					rgba: 0,0,1,1
+				Line:
+					width: 1
+					rectangle: self.x, self.y, self.width, self.height
+				Color:
+					rgba: hex("#E1DADA")
+				RoundedRectangle:
+					pos: (0, 0)
+					size: (root.width, root.height/3)
+					radius: 45, 45, 0, 0
+			
+			#------------------------------------------------------
+			Button:
+				canvas.before:
+					Color:
+						rgba: hex("282F42") if self.state == "down" else hex("#2f384f")
+					Ellipse:
+						size: dp(90), dp(90)
+						pos: self.pos
+
+				id: btnmic
+				size_hint: None, None
+				height: micsize
+				width: self.height
+				pos_hint: {'center_x': .5, 'center_y': .4}
+				disabled: True if self.state == "down" else False
+				background_color: 0,0,0,0
+
+				on_release:
+					root.start_listening()
+				
+				Image:
+					id: imgmic
+					source: "icons/mic.png"
+					size: "65dp", "65dp"
+					center_x: self.parent.center_x
+					center_y: self.parent.center_y
+
+## ==== SETTINGS SCREEN ==== ##
+<Setting>:
+	name: "setting"
+
+## ==== INFO SCREEN ==== ##
 <Info>:
 	name: "info"
-
-<Settings>:
-	name: "settings"

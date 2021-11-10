@@ -10,14 +10,15 @@ from features import *
 __version__ = "14.53"
 
 ## == APP ASPECT RATIO == ##
-window_aspect_ratio(9, 19.5, 0) # Width, Height, Scale
+
+window_aspect_ratio(9, 16, -5.8) # Width, Height, Scale
 
 ## == SCREENS == ##
 #(Main Screen In features.py)#
 class Info(Screen):
 	pass
 
-class Settings(Screen):
+class Setting(Screen):
 	pass
 
 class WindowManager(ScreenManager):

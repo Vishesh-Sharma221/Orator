@@ -15,7 +15,7 @@ from time import sleep
 
 ## == APP ASPECT RATIO FUNCTION == ##
 def window_aspect_ratio(width, height, factor):
-	Window.size = (dp((40-factor)*width), dp((40-factor)*height))
+	Window.size = ((40-factor)*width, (40-factor)*height)
 
 ## == FEATURES CLASS == ##
 ## ==== MAIN SCREEN ==== ##
@@ -106,6 +106,7 @@ class Features(Screen):
             elif "play" in lspoken: self.search = (lspoken.split("play")[1]).split("on youtube")[0]
 
             self.response = f"Searching YouTube on your browser."
+            self.speak(self.response)
             webbrowser.open("http://www.youtube.com/results?search_query=" + "+".join(self.search))
 
         # == Search On Google == #
@@ -114,6 +115,7 @@ class Features(Screen):
             elif "google" in lspoken: self.search = (lspoken.split("google")[1])
 
             self.response = f"Seaching on Google."
+            self.speak(self.response)
             webbrowser.open("https://www.google.com/search?q=" + "+".join(self.search))
 
         if self.response == " ":
