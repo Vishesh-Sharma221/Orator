@@ -107,7 +107,18 @@ WindowManager:
 					Line:
 						width: dp(2.25)
 						rounded_rectangle: (self.x, self.y, self.width, self.height, dp(20))
-		
+			
+			Label:
+				id: feedback
+				text: root.response
+				font_size: "20dp"
+				color: hex("#00D1FF")
+				text_size: self.size
+				size_hint: .9, .85
+				pos_hint: {'center_x': .5, 'center_y': .5}
+				halign: "center"
+				valign: "middle"
+	
 		###########################################################
 		FloatLayout:
 			size_hint: 1, .35
