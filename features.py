@@ -120,6 +120,15 @@ class Features(Screen):
         ordinals = ["1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th","16th","17th","18th","19th","20th","21st","22nd","23rd","24th","25th","26th","27th","28th","29th","30th","31st"]
 
         return "Today is " + week_now + ", " + months[month_now - 1] + " the " + ordinals[day_now - 1] + "."
+    
+    def greet(text):
+        greets = ["hi","hello","greetings","Whats up","howdy","what's good","Hey there"]
+
+        for word in text.split():
+            if word.lower() in greets:
+                return random.choice(greets) + ". I am Orator. " + "What can i do for you sir?"
+
+        return ""
 
 
     def wiki_person(self, text):
@@ -178,6 +187,80 @@ class Features(Screen):
             self.response = f"Seaching on Google."
             self.speak(self.response)
             webbrowser.open("https://www.google.com/search?q=" + "+".join(self.search))
+        
+        # == Other Features == #
+        
+        if "date" in lspoken or "day" in lspoken or "month" in lspoken:
+            get_today = self.today_date()
+            self.response += " " + get_today
+        
+        elif "time" in lspoken:
+            now = datetime.datetime.now()
+
+            meridiem = " "
+            if now.hour >= 12:
+                meridiem = "p.m"
+                hour = now.hour
+            else:
+                meridiem = "a.m"
+                hour = now.hour
+
+            if now.minute < 10:
+                minute = "0" + str(now.minute)
+            else:
+                minute = str(now.minute)
+
+            self.response += " " + "It is " + str(hour) + ":" + minute + " " + meridiem + " ."
+        
+        elif "wikipedia" in lspoken or "Wikipedia" in lspoken:
+            if "who is" in lspoken:
+                person = self.wiki_person(lspoken)
+                wiki = wikipedia.summary(person, sentences=2)
+                self.response += " " + wiki
+        
+        elif "who are you" in lspoken or "define yourself" in lspoken:
+            self.response += """Hello, I am an Assistant. Orator. I am here to make your life easier.  
+            You can command me to perform various tasks such as solving mathematical questions or opening 
+            applications etcetera."""
+        
+        elif "your name" in lspoken:
+            self.response += "My name is Orator."
+
+        elif "who am i" in lspoken:
+            self.response += "You must probably be a human. I guess?"
+
+        elif "why do you exist" in lspoken or "why did you come" in lspoken:
+            self.response += "It is a secret sir."
+
+        elif "how are you" in lspoken:
+            self.response += "I am fine, Thank you!"
+            self.response += "\nHow are you?"
+
+        elif "fine" in lspoken or "good" in lspoken:
+            self.response += "Im happy to know that you are fine sir!"
+
+        elif 'thank you' in lspoken or 'thanks' in lspoken:
+            self.response += "You're Welcome"
+            self.response += "\n Always here to help you out sir !"
+
+        elif "note" in lspoken or "remember this" in lspoken:
+            self.speak("What would you like me to write down sir?")
+            note_text = self.listen()
+            self.note(note_text)
+            
+            self.response += "Alright, i noted that down sir!."
+
+        elif 'i love you' in lspoken:
+            self.response += "I love you too sir"
+
+        elif 'joke' in lspoken:
+            self.response += pyjokes.get_joke()
+
+        elif "don't listen" in lspoken or "stop listening" in lspoken or "do not listen" in lspoken:
+            self.speak("for how many seconds do you want me to sleep")
+            duration = int(self.listen())
+            sleep(duration)
+            self.response += str(duration) + " seconds completed. I am Loaded again sir !"
 
         if self.response == " ":
             self.response = "No response."
