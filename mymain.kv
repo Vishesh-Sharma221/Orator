@@ -33,13 +33,6 @@ WindowManager:
 		FloatLayout:
 			size_hint: 1, .1
 
-			canvas.before:
-				Color:
-					rgba: 1,0,0,1
-				Line:
-					width: 1
-					rectangle: self.x, self.y, self.width, self.height
-
 			Button:
 				id: btnsettings
 				size_hint: None, None
@@ -73,7 +66,7 @@ WindowManager:
 
 				Image:
 					id: imginfo
-					source: "icons/filledhelp.png"
+					source: "icons/hollowhelp.png"
 					size: self.parent.size
 					center_x: self.parent.center_x
 					center_y: self.parent.center_y	
@@ -81,13 +74,6 @@ WindowManager:
 		###########################################################
 		FloatLayout:
 			size_hint: 1, .55
-
-			canvas.before:
-				Color:
-					rgba: 0,1,0,1
-				Line:
-					width: 1
-					rectangle: self.x, self.y, self.width, self.height
 
 			Label:
 				id: lblhellouser
@@ -126,11 +112,6 @@ WindowManager:
 			#------------------------------------------------------
 			canvas.before:
 				Color:
-					rgba: 0,0,1,1
-				Line:
-					width: 1
-					rectangle: self.x, self.y, self.width, self.height
-				Color:
 					rgba: hex("#E1DADA")
 				RoundedRectangle:
 					pos: (0, 0)
@@ -165,9 +146,178 @@ WindowManager:
 					center_y: self.parent.center_y
 
 ## ==== SETTINGS SCREEN ==== ##
+<Info>:
+	name: "info"
+
+	canvas:
+		Color:
+			rgba: hex("#202124")
+		Rectangle:
+			pos: (0, 0)
+			size: (root.width, root.height)
+	
+	GridLayout:
+		cols: 1
+		size_hint: 1, 1
+
+		###########################################################
+		FloatLayout:
+			size_hint: 1, .1
+
+			canvas.before:
+				Color:
+					rgba: 1,0,0,1
+				Line:
+					width: 1
+					rectangle: self.x, self.y, self.width, self.height
+
+			Button:
+				id: btnsettings
+				size_hint: None, None
+				width: "45dp"
+				height: self.width
+				pos_hint: {'x': .05, 'center_y': .45}
+				background_color: 0,0,0,0
+				opacity: .7 if self.state == "down" else 1
+				
+				on_release:
+					root.manager.current = "features"
+
+				Image:
+					id: imgsettings
+					source: "icons/back.png"
+					size: self.parent.size
+					center_x: self.parent.center_x
+					center_y: self.parent.center_y
+
+			Label:
+				text: "ABOUT"
+				font_name:
+				font_size: "35sp"
+				size_hint: 1, 1
+				pos_hint: {'center_x': .5, 'center_y': .45}
+				text_size: self.size
+				halign: "center"
+				valign: "middle"
+			
+		FloatLayout:
+			size_hint: 1, .9
+
+			canvas.before:
+				Color:
+					rgba: 0,1,0,1
+				Line:
+					width: 1
+					rectangle: self.x, self.y, self.width, self.height
+				
+			WrappedLabel:
+				canvas.before:
+					Color:
+						rgba: hex("#E1DADA")
+					RoundedRectangle:
+						size: self.size
+						pos: self.pos
+						radius: 0, 37.5, 37.5, 0
+				
+				markup: True
+				text: "Hi, I'm Orator.... Your very own personal virtual assistant."
+				font_size: "25.75sp"
+				color: hex("#0C748B")
+				text_size: self.size
+				size_hint: .885, .15
+				pos_hint: {'x': 0, 'top': .9}
+				padding_x: "10dp"
+				halign: "left"
+				valign: "middle"
+			
+			FloatLayout:
+				canvas.before:
+					Color:
+						rgba: hex("#E1DADA")
+					RoundedRectangle:
+						size: self.size
+						pos: self.pos
+						radius: 37.5, 0, 0, 0
+				
+				size_hint: .885, .665
+				pos_hint: {'right': 1}
+
+				ScrollView:
+					size_hint: 1, 1
+					do_scroll_x: False
+					do_scroll_y: True 
+					pos_hint: {'center_x': .5, 'center_y': .5}
+					bar_width: "7dp"
+
+					GridLayout:
+						cols: 1
+						size_hint: 1, 1
+						size_hint_x: None
+						size_hint_y: None
+						height: self.minimum_height
+						pos_hint: {'center_x': .5, 'center_y': .5}
+
+## ==== INFO SCREEN ==== ##
 <Setting>:
 	name: "setting"
 
-## ==== INFO SCREEN ==== ##
-<Info>:
-	name: "info"
+	canvas:
+		Color:
+			rgba: hex("#202124")
+		Rectangle:
+			pos: (0, 0)
+			size: (root.width, root.height)
+	
+	GridLayout:
+		cols: 1
+		size_hint: 1, 1
+
+		###########################################################
+		FloatLayout:
+			size_hint: 1, .1
+
+			canvas.before:
+				Color:
+					rgba: 1,0,0,1
+				Line:
+					width: 1
+					rectangle: self.x, self.y, self.width, self.height
+
+			Button:
+				id: btnsettings
+				size_hint: None, None
+				width: "45dp"
+				height: self.width
+				pos_hint: {'x': .05, 'center_y': .45}
+				background_color: 0,0,0,0
+				opacity: .7 if self.state == "down" else 1
+				
+				on_release:
+					root.manager.current = "features"
+
+				Image:
+					id: imgsettings
+					source: "icons/back.png"
+					size: self.parent.size
+					center_x: self.parent.center_x
+					center_y: self.parent.center_y
+			
+			Label:
+				text: "SETTINGS"
+				font_name: 
+				font_size: "35sp"
+				size_hint: 1, 1
+				pos_hint: {'center_x': .5, 'center_y': .45}
+				text_size: self.size
+				halign: "center"
+				valign: "middle"
+			
+		FloatLayout:
+			size_hint: 1, .9
+
+			canvas.before:
+				Color:
+					rgba: 0,1,0,1
+				Line:
+					width: 1
+					rectangle: self.x, self.y, self.width, self.height

@@ -7,7 +7,7 @@ from kivy.clock import Clock
 from features import *
 
 ## ==== APP VERSION ==== ##
-__version__ = "14.53"
+__version__ = "14.63"
 
 ## == APP ASPECT RATIO == ##
 
