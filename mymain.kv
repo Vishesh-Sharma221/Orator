@@ -276,13 +276,6 @@ WindowManager:
 		FloatLayout:
 			size_hint: 1, .1
 
-			canvas.before:
-				Color:
-					rgba: 1,0,0,1
-				Line:
-					width: 1
-					rectangle: self.x, self.y, self.width, self.height
-
 			Button:
 				id: btnsettings
 				size_hint: None, None
@@ -315,9 +308,85 @@ WindowManager:
 		FloatLayout:
 			size_hint: 1, .9
 
-			canvas.before:
-				Color:
-					rgba: 0,1,0,1
-				Line:
-					width: 1
-					rectangle: self.x, self.y, self.width, self.height
+			Label:
+				text: "Toggle Themes :"
+				font_size: "30sp"
+				text_size: self.size
+				size_hint: .9, .1
+				pos_hint: {'center_x': .5, 'top': .95}
+				halign: "left"
+				valign: "middle"
+
+			BoxLayout:
+				orientation: "horizontal"
+				size_hint: .9, .15
+				pos_hint: {'center_x': .5, 'top': .85}
+				spacing: "10dp"
+
+				Button:
+					size_hint: None, .8
+					width: self.height
+					pos_hint: {'center_y': .5}
+					background_color: 0,0,0,0
+					
+					Image:
+						source: "icons/cyantheme.png"
+						size: self.parent.size
+						pos: self.parent.pos						
+				
+				Button:
+					size_hint: None, .8
+					width: self.height
+					pos_hint: {'center_y': .5}
+					background_color: 0,0,0,0
+					
+					Image:
+						source: "icons/matrixtheme.png"
+						size: self.parent.size
+						pos: self.parent.pos
+				
+				Button:
+					size_hint: None, .8
+					width: self.height
+					pos_hint: {'center_y': .5}
+					background_color: 0,0,0,0
+					
+					Image:
+						source: "icons/pinkanta.png"
+						size: self.parent.size
+						pos: self.parent.pos
+			BoxLayout:
+				orientation: "horizontal"
+				size_hint: .9, .075
+				pos_hint: {'center_x': .5, 'top': .725}
+				spacing: "10dp"
+
+				Label:
+					text: "Cyan"
+					font_size: "15sp"
+					text_size: self.size
+					pos_hint: {'center_y': .5}
+					size_hint: None, 1.6
+					width: self.height
+					halign: "center"
+					valign: "middle"
+				
+				Label:
+					text: "Matrix"
+					font_size: "15sp"
+					text_size: self.size
+					pos_hint: {'center_y': .5}
+					size_hint: None, 1.6
+					width: self.height
+					halign: "center"
+					valign: "middle"
+				
+				Label:
+					text: "Pinkanta"
+					font_size: "15sp"
+					text_size: self.size
+					pos_hint: {'center_y': .5}
+					size_hint: None, 1.6
+					width: self.height
+					halign: "center"
+					valign: "middle"
