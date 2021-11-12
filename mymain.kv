@@ -20,7 +20,7 @@ WindowManager:
 
 	canvas:
 		Color:
-			rgba: hex("#202124")
+			rgba: hex(root.manager.background)
 		Rectangle:
 			pos: (0, 0)
 			size: (root.width, root.height)
@@ -76,29 +76,29 @@ WindowManager:
 			size_hint: 1, .55
 
 			Label:
+				canvas.before:
+					Color:
+						rgba: hex(root.manager.maintheme)
+					Line:
+						width: dp(2.25)
+						rounded_rectangle: (self.x, self.y, self.width, self.height, dp(20))
+				
 				id: lblhellouser
-				text: "Good Evening, You"
+				text: root.welcome()
 				font_size: "30dp"
-				color: hex("#00D1FF")
+				color: hex(root.manager.maintheme)
 				text_size: self.size
 				size_hint: .9, .15
 				pos_hint: {'center_x': .5, 'top': .925}
 				halign: "left"
 				valign: "middle"
 				padding_x: "15dp"
-
-				canvas.before:
-					Color:
-						rgba: hex("#00D1FF")
-					Line:
-						width: dp(2.25)
-						rounded_rectangle: (self.x, self.y, self.width, self.height, dp(20))
-			
-			Label:
+				
+			WrappedLabel:
 				id: feedback
 				text: root.response
 				font_size: "20dp"
-				color: hex("#00D1FF")
+				color: hex(root.manager.maintheme)
 				text_size: self.size
 				size_hint: .9, .85
 				pos_hint: {'center_x': .5, 'center_y': .5}
@@ -112,7 +112,7 @@ WindowManager:
 			#------------------------------------------------------
 			canvas.before:
 				Color:
-					rgba: hex("#E1DADA")
+					rgba: hex(root.manager.card)
 				RoundedRectangle:
 					pos: (0, 0)
 					size: (root.width, root.height/3)
@@ -134,7 +134,7 @@ WindowManager:
 				pos_hint: {'center_x': .5, 'center_y': .4}
 				disabled: True if self.state == "down" else False
 				background_color: 0,0,0,0
-
+				
 				on_release:
 					root.start_listening()
 				
@@ -151,7 +151,7 @@ WindowManager:
 
 	canvas:
 		Color:
-			rgba: hex("#202124")
+			rgba: hex(root.manager.background)
 		Rectangle:
 			pos: (0, 0)
 			size: (root.width, root.height)
@@ -163,13 +163,6 @@ WindowManager:
 		###########################################################
 		FloatLayout:
 			size_hint: 1, .1
-
-			canvas.before:
-				Color:
-					rgba: 1,0,0,1
-				Line:
-					width: 1
-					rectangle: self.x, self.y, self.width, self.height
 
 			Button:
 				id: btnsettings
@@ -202,18 +195,11 @@ WindowManager:
 			
 		FloatLayout:
 			size_hint: 1, .9
-
-			canvas.before:
-				Color:
-					rgba: 0,1,0,1
-				Line:
-					width: 1
-					rectangle: self.x, self.y, self.width, self.height
 				
 			WrappedLabel:
 				canvas.before:
 					Color:
-						rgba: hex("#E1DADA")
+						rgba: hex(root.manager.card)
 					RoundedRectangle:
 						size: self.size
 						pos: self.pos
@@ -222,7 +208,7 @@ WindowManager:
 				markup: True
 				text: "Hi, I'm Orator.... Your very own personal virtual assistant."
 				font_size: "25.75sp"
-				color: hex("#0C748B")
+				color: hex(root.manager.maintheme)
 				text_size: self.size
 				size_hint: .885, .15
 				pos_hint: {'x': 0, 'top': .9}
@@ -233,7 +219,7 @@ WindowManager:
 			FloatLayout:
 				canvas.before:
 					Color:
-						rgba: hex("#E1DADA")
+						rgba: hex(root.manager.card)
 					RoundedRectangle:
 						size: self.size
 						pos: self.pos
@@ -263,7 +249,7 @@ WindowManager:
 
 	canvas:
 		Color:
-			rgba: hex("#202124")
+			rgba: hex(root.manager.background)
 		Rectangle:
 			pos: (0, 0)
 			size: (root.width, root.height)
@@ -321,13 +307,18 @@ WindowManager:
 				orientation: "horizontal"
 				size_hint: .9, .15
 				pos_hint: {'center_x': .5, 'top': .85}
-				spacing: "10dp"
+				spacing: "15dp"
 
 				Button:
+					id: cyantheme
 					size_hint: None, .8
 					width: self.height
 					pos_hint: {'center_y': .5}
 					background_color: 0,0,0,0
+					opacity: .7 if self.state == "down" else 1
+
+					on_release:
+						root.manager.change_theme_cyan()
 					
 					Image:
 						source: "icons/cyantheme.png"
@@ -335,10 +326,15 @@ WindowManager:
 						pos: self.parent.pos						
 				
 				Button:
+					id: matrixtheme
 					size_hint: None, .8
 					width: self.height
 					pos_hint: {'center_y': .5}
 					background_color: 0,0,0,0
+					opacity: .7 if self.state == "down" else 1
+					
+					on_release:
+						root.manager.change_theme_matrix()
 					
 					Image:
 						source: "icons/matrixtheme.png"
@@ -346,20 +342,25 @@ WindowManager:
 						pos: self.parent.pos
 				
 				Button:
+					id: pinkantatheme
 					size_hint: None, .8
 					width: self.height
 					pos_hint: {'center_y': .5}
 					background_color: 0,0,0,0
+					opacity: .7 if self.state == "down" else 1
+					
+					on_release:
+						root.manager.change_theme_pinkanta()
 					
 					Image:
-						source: "icons/pinkanta.png"
+						source: "icons/pinkantatheme.png"
 						size: self.parent.size
 						pos: self.parent.pos
 			BoxLayout:
 				orientation: "horizontal"
 				size_hint: .9, .075
 				pos_hint: {'center_x': .5, 'top': .725}
-				spacing: "10dp"
+				spacing: "15dp"
 
 				Label:
 					text: "Cyan"

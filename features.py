@@ -39,9 +39,10 @@ class WrappedLabel(Label):
 ## ==== MAIN SCREEN ==== ##
 class Features(Screen):
 
-    # == Default Response == #
-    response = StringProperty("Hola!")
-
+    # == GUI Variables == #
+    response = StringProperty("Click the mic button below and start speaking.\n(Check 'Info' page for the commands.)")
+    greeting = StringProperty("Good Evening")
+    
     # == Mic Button on_release == #
     def start_listening(self):
         self.spoken = self.listen()
@@ -74,7 +75,7 @@ class Features(Screen):
     def listen():
         r = sr.Recognizer()
         with sr.Microphone() as source:
-            # r.adjust_for_ambient_noise(source, duration=1)
+            r.adjust_for_ambient_noise(source, duration=4)
             print("Listening...")
             audio = r.listen(source)
 
@@ -100,14 +101,16 @@ class Features(Screen):
         self.hour = int(datetime.datetime.now().hour)
         
         if self.hour >= 0 and self.hour <= 12:
-            self.speak("Good Morning Sir !")
+            self.speak("Good Morning!")
+            return "Good Morning!"
         elif self.hour >= 12 and self.hour <= 17:
-            self.speak("Good Afternoon sir!")
-            self.temp_speak(self.hour)
+            self.speak("Good Afternoon!")
+            return "Good Afternoon!"
         else:
-            self.speak("Good evening sir!")
+            self.speak("Good Evening!")
+            return "Good Evening!"
         
-        self.speak("I am Orator Version 14.63, How can I help you?")
+        # self.speak("I am Orator Version 14.63, How can I help you?")
 
     def today_date(self):
         now = datetime.datetime.now()
@@ -119,14 +122,15 @@ class Features(Screen):
         months = ["January","February","March","April","May","June","July","August","September","October","November","December"]
         ordinals = ["1st","2nd","3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th","13th","14th","15th","16th","17th","18th","19th","20th","21st","22nd","23rd","24th","25th","26th","27th","28th","29th","30th","31st"]
 
-        return "Today is " + week_now + ", " + months[month_now - 1] + " the " + ordinals[day_now - 1] + "."
+        # return "Today is " + week_now + ", " + months[month_now - 1] + " the " + ordinals[day_now - 1] + "."
+        return f"{week_now}, {ordinals[date_now - 1]} {months[month_now - 1]}"
     
     def greet(text):
         greets = ["hi","hello","greetings","Whats up","howdy","what's good","Hey there"]
 
         for word in text.split():
             if word.lower() in greets:
-                return random.choice(greets) + ". I am Orator. " + "What can i do for you sir?"
+                return random.choice(greets) + ". I am Orator. " + "What can I do for you sir?"
 
         return ""
 
