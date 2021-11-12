@@ -75,7 +75,7 @@ class Features(Screen):
     def listen():
         r = sr.Recognizer()
         with sr.Microphone() as source:
-            r.adjust_for_ambient_noise(source, duration=4)
+            r.adjust_for_ambient_noise(source, duration=5)
             print("Listening...")
             audio = r.listen(source)
 

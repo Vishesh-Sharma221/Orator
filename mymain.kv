@@ -122,7 +122,7 @@ WindowManager:
 			Button:
 				canvas.before:
 					Color:
-						rgba: hex("282F42") if self.state == "down" else hex("#2f384f")
+						rgba: hex(root.manager.micdown) if self.state == "down" else hex(root.manager.micnormal)
 					Ellipse:
 						size: dp(90), dp(90)
 						pos: self.pos
