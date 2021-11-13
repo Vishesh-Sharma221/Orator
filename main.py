@@ -1,7 +1,7 @@
 ## == REQUIRED KIVY MODULES == ##
 from kivy.app import App
 from kivy.lang import Builder
-from kivy.clock import Clock, mainthread
+from kivy.clock import Clock
 
 ## ==== FEATURES SCRIPT ==== ##
 from features import *
@@ -12,7 +12,7 @@ with open("theme.txt", "a+") as f:
 		f.write("cyan")
 
 ## ==== APP VERSION ==== ##
-__version__ = "14.63"
+__version__ = "14.67"
 
 ## == APP ASPECT RATIO == ##
 
@@ -22,6 +22,7 @@ window_aspect_ratio(9, 16, -5.8) # Width, Height, Scale
 #(Main Screen In features.py)#
 class Info(Screen):
 	pass
+
 class Setting(Screen):
 	pass
 
