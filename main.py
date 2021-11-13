@@ -67,6 +67,21 @@ class WindowManager(ScreenManager):
 		if self.theme == "cyan": self.change_theme_cyan()
 		elif self.theme == "matrix": self.change_theme_matrix()
 		elif self.theme == "pinkanta": self.change_theme_pinkanta()
+	
+	examples = StringProperty('''1. Telling the current date,time,month or year.
+    eg: Orator what is the time/month/date/year ?
+2. Opening a website in your default web browser.
+    eg: Orator search on google github.com
+3. Searching anything you say on the wikipedia.
+    eg: Orator search on wikipedia Who is rick astley
+4. Searching anything you say on YouTube.
+    eg: Orator search on youtube Sidemen
+5. Opening any application on your desktop.
+    eg: Orator open Spotify
+6. Writing down anything you say on the notepad.
+    eg: Orator note down today is my birthday
+7. Can tell you some good jokes and even facts!
+    eg: Orator tell me a joke/fact''')
 
 ## ==== GUI SCRIPT ==== ##
 kvfile = Builder.load_file("mymain.kv")

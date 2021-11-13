@@ -148,6 +148,9 @@ class Features(Screen):
             f.write(text)
 
         subprocess.Popen(["notepad.exe", file_name])
+    
+    def run(self, text):
+        os.system(text)
 
     ## ==== FEATURES ==== ##
     def features(self, lspoken):
@@ -279,6 +282,10 @@ class Features(Screen):
             sleep(duration)
             self.response += str(duration) + " seconds completed. I am Loaded again!"
             self.temp_speak(self.response)
+        
+        elif "run" in lspoken:
+            self.run()
+            self.response += f"opening {lspoken}"
 
         if self.response == " ":
             self.response = "No response."

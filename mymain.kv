@@ -215,7 +215,7 @@ WindowManager:
 				padding_x: "10dp"
 				halign: "left"
 				valign: "middle"
-			
+
 			FloatLayout:
 				canvas.before:
 					Color:
@@ -224,14 +224,14 @@ WindowManager:
 						size: self.size
 						pos: self.pos
 						radius: 37.5, 0, 0, 0
-				
+
 				size_hint: .885, .665
 				pos_hint: {'right': 1}
 
 				ScrollView:
 					size_hint: 1, 1
 					do_scroll_x: False
-					do_scroll_y: True 
+					do_scroll_y: True
 					pos_hint: {'center_x': .5, 'center_y': .5}
 					bar_width: "7dp"
 
@@ -240,8 +240,14 @@ WindowManager:
 						size_hint: 1, 1
 						size_hint_x: None
 						size_hint_y: None
-						height: self.minimum_height
+						height: "500dp"
 						pos_hint: {'center_x': .5, 'center_y': .5}
+
+						Label:
+							text: root.manager.examples
+							pos_hint: {'center_x': 1, 'center_y': .5}
+							
+							color: hex("#000000")
 
 ## ==== INFO SCREEN ==== ##
 <Setting>:
