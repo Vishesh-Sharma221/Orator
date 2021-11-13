@@ -134,9 +134,10 @@ WindowManager:
 				pos_hint: {'center_x': .5, 'center_y': .4}
 				disabled: True if self.state == "down" else False
 				background_color: 0,0,0,0
-				
+
 				on_release:
 					root.start_listening()
+					micstatus.text = "Done Listening"
 				
 				Image:
 					id: imgmic
@@ -144,6 +145,22 @@ WindowManager:
 					size: "65dp", "65dp"
 					center_x: self.parent.center_x
 					center_y: self.parent.center_y
+			
+			Label:
+				id: spoken
+				text: root.gui_spoken
+				color: hex("#000000")
+				font_size: "15sp"
+				size_hint: 1, .1
+				pos_hint: {'center_x': .5, 'center_y': .75}
+
+			Label:
+				id: micstatus
+				text: "Listening..." if btnmic.state == "down" else ""
+				color: hex("#000000")
+				font_size: "15sp"
+				size_hint: 1, .1
+				pos_hint: {'center_x': .5, 'center_y': .15}
 
 ## ==== SETTINGS SCREEN ==== ##
 <Info>:
@@ -246,7 +263,7 @@ WindowManager:
 						Label:
 							text: root.manager.examples
 							pos_hint: {'center_x': 1, 'center_y': .5}
-							
+
 							color: hex("#000000")
 
 ## ==== INFO SCREEN ==== ##
