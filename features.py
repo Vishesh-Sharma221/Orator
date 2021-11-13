@@ -286,6 +286,7 @@ class Features(Screen):
         elif "run" in lspoken:
             self.run()
             self.response += f"opening {lspoken}"
+            self.speak(self.response)
 
         if self.response == " ":
             self.response = "No response."
