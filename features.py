@@ -53,7 +53,7 @@ class Features(Screen):
     ## ==== TEXT-TO-SPEECH ==== ##
     # == Main TTS Conversion == #
     def tts(self, text, filename):
-        tts = gTTS(text=text, lang="en", tld="ca")
+        tts = gTTS(text=text, lang="en", tld="co.in")
         tts.save(filename)
 
     # == TTS For Fixed Sentences == #
