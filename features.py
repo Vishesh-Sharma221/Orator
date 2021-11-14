@@ -42,18 +42,25 @@ class Features(Screen):
     # == GUI Variables == #
     response = StringProperty("Click the mic button below and start speaking.\n(Check 'Info' page for the commands.)")
     greeting = StringProperty("Good Evening")
+    micstatus = StringProperty("")
+    gui_spoken = StringProperty("You said: ")
     
     # == Mic Button on_release == #
     def start_listening(self):
         self.spoken = self.listen()
         self.lspoken = self.spoken.lower()
+        self.gui_spoken += self.spoken
 
         self.features(self.lspoken)
 
     ## ==== TEXT-TO-SPEECH ==== ##
     # == Main TTS Conversion == #
     def tts(self, text, filename):
+<<<<<<< HEAD
         tts = gTTS(text=text, lang="en", tld="co.in")
+=======
+        tts = gTTS(text=text, lang="en", tld="co.uk")
+>>>>>>> c9cf3934d1ae5c6db21bf7117f7766780dc664d5
         tts.save(filename)
 
     # == TTS For Fixed Sentences == #
@@ -71,12 +78,10 @@ class Features(Screen):
         os.remove(filename)
 
     # ==== SPEECH-TO-TEXT ==== ##
-    @staticmethod
-    def listen():
+    def listen(self):
         r = sr.Recognizer()
         with sr.Microphone() as source:
-            r.adjust_for_ambient_noise(source, duration=5)
-            print("Listening...")
+            r.adjust_for_ambient_noise(source, duration=4)
             audio = r.listen(source)
 
         said = " "
@@ -91,7 +96,6 @@ class Features(Screen):
         except Exception as e:
             print("Exception: " + str(e))
         
-        print("Done listening.")
         return said
     
     #### ======== FEATURES ======== ####

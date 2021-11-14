@@ -8,11 +8,12 @@ from features import *
 
 ## ==== THEME FILE ==== ##
 with open("theme.txt", "a+") as f:
-	if f.read() == "":
+	f.seek(0)
+	if len(f.read()) == 0:
 		f.write("cyan")
 
 ## ==== APP VERSION ==== ##
-__version__ = "14.67"
+__version__ = "14.70"
 
 ## == APP ASPECT RATIO == ##
 
@@ -30,7 +31,7 @@ class WindowManager(ScreenManager):
 
 	maintheme = StringProperty("#00D1FF")
 	background = StringProperty("#202124")
-	card = StringProperty("#E1DADA")
+	card = StringProperty("#005B6F")
 	micdown = StringProperty("#282F42")
 	micnormal = StringProperty("#2F384F")
 
@@ -39,6 +40,7 @@ class WindowManager(ScreenManager):
 		self.background = "#202124"
 		self.micdown = "#282F42"
 		self.micnormal = "#2F384F"
+		self.card = "#005B6F"
 		with open("theme.txt","w+") as f:
 			f.write("cyan")
 	
@@ -47,6 +49,7 @@ class WindowManager(ScreenManager):
 		self.background = "#000000"
 		self.micdown = "#00FF00"
 		self.micnormal = "#000000"
+		self.card = "#027004"
 		with open("theme.txt","w+") as f:
 			f.write("matrix")
 
@@ -55,6 +58,7 @@ class WindowManager(ScreenManager):
 		self.background = "#202124"
 		self.micdown = "#282F42"
 		self.micnormal = "#2F384F"
+		self.card = "#005B6F"
 		with open("theme.txt","w+") as f:
 			f.write("pinkanta")
 
@@ -68,7 +72,9 @@ class WindowManager(ScreenManager):
 		elif self.theme == "matrix": self.change_theme_matrix()
 		elif self.theme == "pinkanta": self.change_theme_pinkanta()
 	
-	examples = StringProperty('''1. Telling the current date,time,month or year.
+	examples = StringProperty('''    [color=#fff][b][u][size=25sp]What can I do?[/size][/u][/b]
+
+1. Telling the current date,time,month or year.
     eg: Orator what is the time/month/date/year ?
 2. Opening a website in your default web browser.
     eg: Orator search on google github.com
@@ -81,7 +87,7 @@ class WindowManager(ScreenManager):
 6. Writing down anything you say on the notepad.
     eg: Orator note down today is my birthday
 7. Can tell you some good jokes and even facts!
-    eg: Orator tell me a joke/fact''')
+    eg: Orator tell me a joke/fact[/color]''')
 
 ## ==== GUI SCRIPT ==== ##
 kvfile = Builder.load_file("mymain.kv")
