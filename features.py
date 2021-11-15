@@ -199,7 +199,7 @@ class Features(Screen):
         
         if "date" in lspoken or "day" in lspoken or "month" in lspoken:
             get_today = self.today_date()
-            self.response += " " + get_today
+            self.response = " " + get_today
             self.temp_speak(self.response)
         
         elif "time" in lspoken:
@@ -218,46 +218,46 @@ class Features(Screen):
             else:
                 minute = str(now.minute)
 
-            self.response += " " + "It is " + str(hour) + ":" + minute + " " + meridiem + " ."
+            self.response = " " + "It is " + str(hour) + ":" + minute + " " + meridiem + " ."
             self.temp_speak(self.response)
         
         elif "wikipedia" in lspoken or "Wikipedia" in lspoken:
             if "who is" in lspoken:
                 person = self.wiki_person(lspoken)
                 wiki = wikipedia.summary(person, sentences=2)
-                self.response += " " + wiki
+                self.response = " " + wiki
                 self.temp_speak(self.response)
         
         elif "who are you" in lspoken or "define yourself" in lspoken:
-            self.response += """Hello, I am an Assistant. Orator. I am here to make your life easier.  
+            self.response = """Hello, I am an Assistant. Orator. I am here to make your life easier.  
             You can command me to perform various tasks such as solving mathematical questions or opening 
             applications etcetera."""
             self.speak(self.response)
         
         elif "your name" in lspoken:
-            self.response += "My name is Orator."
+            self.response = "My name is Orator."
             self.speak(self.response)
 
         elif "who am i" in lspoken:
-            self.response += "You must probably be a human. I guess?"
+            self.response = "You must probably be a human. I guess?"
             self.speak(self.response)
 
         elif "why do you exist" in lspoken or "why did you come" in lspoken:
-            self.response += "It is a secret."
+            self.response = "It is a secret."
             self.speak(self.response)
 
         elif "how are you" in lspoken:
-            self.response += "I am fine, Thank you!"
-            self.response += "\nHow are you?"
+            self.response = "I am fine, Thank you!"
+            self.response = "\nHow are you?"
             self.speak(self.response)
 
         elif "fine" in lspoken or "good" in lspoken:
-            self.response += "Im happy to know that you are fine!"
+            self.response = "Im happy to know that you are fine!"
             self.speak(self.response)
 
         elif 'thank you' in lspoken or 'thanks' in lspoken:
-            self.response += "You're Welcome"
-            self.response += "\n Always here to help you out!"
+            self.response = "You're Welcome"
+            self.response = "\n Always here to help you out!"
             self.speak(self.response)
 
         elif "note" in lspoken or "remember this" in lspoken:
@@ -265,27 +265,27 @@ class Features(Screen):
             note_text = self.listen()
             self.note(note_text)
             
-            self.response += "Alright, i noted that down!."
+            self.response = "Alright, i noted that down!."
             self.speak(self.response)
 
         elif 'i love you' in lspoken:
-            self.response += "I love you too!"
+            self.response = "I love you too!"
             self.speak(self.response)
 
         elif 'joke' in lspoken:
-            self.response += pyjokes.get_joke()
+            self.response = pyjokes.get_joke()
             self.temp_speak(self.response)
 
         elif "don't listen" in lspoken or "stop listening" in lspoken or "do not listen" in lspoken:
             self.speak("for how many seconds do you want me to sleep")
             duration = int(self.listen())
             sleep(duration)
-            self.response += str(duration) + " seconds completed. I am Loaded again!"
+            self.response = str(duration) + " seconds completed. I am Loaded again!"
             self.temp_speak(self.response)
         
         elif "run" in lspoken:
             self.run()
-            self.response += f"opening {lspoken}"
+            self.response = f"opening {lspoken}"
             self.speak(self.response)
 
         if self.response == " ":
